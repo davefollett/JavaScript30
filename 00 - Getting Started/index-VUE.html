@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GETTING STARTED</title>
+  <!-- Use Vue from a CDN -->
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Vue Root DOM Element -->
+<div id="app">
+  {{ message }}
+</div>
+  
+<!-- Vue Instance Section -->
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello World!"
+    },
+    computed: {
+    },
+    methods: {
+    },
+    mounted: function () {
+    },
+    watch: {
+    }
+  })
+</script>
+
+<!-- CSS Section -->
+<style>  
+</style>
+
+</body>
+</html>
