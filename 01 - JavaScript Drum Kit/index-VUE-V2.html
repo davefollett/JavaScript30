@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Drum Kit</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<div id="app">
+  <div class="keys">
+    <div
+      v-for="key in keys"
+      :key="key.keyCode"
+      :class="[key.isPlaying ? 'playing' : '', 'key']"
+      @transitionend="removeTransition($event, key)"
+    >
+      <kbd>{{ key.keyName }}</kbd>
+      <span class="sound">{{ key.soundName }}</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      keys: [
+        {keyCode: 65, keyName: "A", soundName: "clap", audio: new Audio("sounds/clap.wav"), isPlaying: false},
+        {keyCode: 83, keyName: "S", soundName: "hihat", audio: new Audio("sounds/hihat.wav"), isPlaying: false},
+        {keyCode: 68, keyName: "D", soundName: "kick", audio: new Audio("sounds/kick.wav"), isPlaying: false},
+        {keyCode: 70, keyName: "F", soundName: "openhat", audio: new Audio("sounds/openhat.wav"), isPlaying: false},
+        {keyCode: 71, keyName: "G", soundName: "boom", audio: new Audio("sounds/boom.wav"), isPlaying: false},
+        {keyCode: 72, keyName: "H", soundName: "ride", audio: new Audio("sounds/ride.wav"), isPlaying: false},
+        {keyCode: 74, keyName: "J", soundName: "snare", audio: new Audio("sounds/snare.wav"), isPlaying: false},
+        {keyCode: 75, keyName: "K", soundName: "tom", audio: new Audio("sounds/tom.wav"), isPlaying: false},
+        {keyCode: 76, keyName: "L", soundName: "tink", audio: new Audio("sounds/tink.wav"), isPlaying: false},
+      ]
+    },
+    methods: {
+      removeTransition: function (e, key) {
+        if (e.propertyName !== 'transform') { return }
+        key.isPlaying = false
+      },
+      playSound: function (e) {
+        const key = this.keys.find( key => { return key.keyCode === e.keyCode })
+        if (!key) { return }
+
+        key.audio.currentTime = 0
+        key.isPlaying = true
+        key.audio.play()
+      }
+    },
+    mounted: function () {
+      window.addEventListener('keydown', this.playSound)
+    }
+  })
+</script>
+
+</body>
+</html>
