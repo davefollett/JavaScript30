@@ -3,6 +3,7 @@
 This fork is part of a blog series at [https://davefollett.io](https://davefollett.io) that re-implements each JavaScript30 project (that makes sense) with Vue.  All changes found here are not intended to be merged back into the original repository. 
 
 ## Change Log
+* Added "01 - JavaScript Drum Kit/index-VUE-V1.html" and "01 - JavaScript Drum Kit/index-VUE-V2.html"
 * Added "00 - Getting Started/index-VUE.html" as a base file to build the rest of the projects from.
 
 ![](https://javascript30.com/images/JS3-social-share.png)
