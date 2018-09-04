@@ -32,24 +32,33 @@
         base: "#ffc600"
       },
       mounted: function() {
-        this.updateCSSVariable('--spacing', `${this.spacing}px`)
-        this.updateCSSVariable('--blur', `${this.blur}px`)
-        this.updateCSSVariable('--base', this.base)
+        this.updateCSSSpacing()
+        this.updateCSSBlur()
+        this.updateCSSBase()
       },
       methods: {
         updateCSSVariable: function(name, value) {
           this.$el.style.setProperty(name, value)
         },
+        updateCSSSpacing: function () {
+          this.updateCSSVariable('--spacing', `${this.spacing}px`)
+        },
+        updateCSSBlur: function () {
+          this.updateCSSVariable('--blur', `${this.blur}px`)
+        },
+        updateCSSBase: function () {
+          this.updateCSSVariable('--base', this.base)
+        }
       },
       watch: {
         spacing: function(newValue, oldValue) {
-          this.updateCSSVariable('--spacing', `${this.spacing}px`)
+          this.updateCSSSpacing()
         },
         blur: function(newValue, oldValue) {
-          this.updateCSSVariable('--blur', `${this.blur}px`)
+          this.updateCSSBlur()
         },
         base: function(newValue, oldValue) {
-          this.updateCSSVariable('--base', this.base)
+          this.updateCSSBase()
         }
       }
     })
