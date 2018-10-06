@@ -3,6 +3,7 @@
 This fork is part of a blog series at [https://davefollett.io](https://davefollett.io) that re-implements each JavaScript30 project (that makes sense) with Vue.  All changes found here are not intended to be merged back into the original repository. 
 
 ## Change Log
+* Added "05 - Flex Panel Gallery/index-VUE.html"
 * Added "03 - CSS Variables/index-VUE-COMPUTED-STYLES.html" and "03 - CSS Variables/index-VUE-CSS-VARIABLES.html"
 * Added "02 - JS and CSS Clock/index-VUE.html"
 * Added "01 - JavaScript Drum Kit/index-VUE-V1.html" and "01 - JavaScript Drum Kit/index-VUE-V2.html"
