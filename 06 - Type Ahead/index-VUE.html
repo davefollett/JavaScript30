@@ -53,9 +53,11 @@
           const regex = new RegExp(this.searchValue, 'gi')
           const cityName = place.city.replace(regex, `<span class="hl">${this.searchValue}</span>`)
           const stateName = place.state.replace(regex, `<span class="hl">${this.searchValue}</span>`)
-          return { rank: place.rank,
-                   name: `${cityName}, ${stateName}`,
-                   population: this.numberWithCommas(place.population) }
+          return {
+            rank: place.rank,
+            name: `${cityName}, ${stateName}`,
+            population: this.numberWithCommas(place.population)
+          }
         })
       }
     },
