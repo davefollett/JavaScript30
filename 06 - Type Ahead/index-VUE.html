@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Use Vue from a CDN -->
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Vue Root DOM Element -->
+<div id="app">
+  <form class="search-form">
+    <input type="text" class="search" placeholder="City or State" v-model="searchValue">
+    <ul class="suggestions">
+      <template v-if="searchValue">
+        <li
+          v-for="match in displayMatches"
+          :key="match.rank"
+        >
+          <span class="name" v-html="match.name"></span>
+          <span class="population">{{match.population}}</span>
+        </li>
+      </template>
+      <template v-else>
+        <li>Filter for a city</li>
+        <li>or a state</li>
+      </template>
+    </ul>
+  </form>
+</div>
+  
+<!-- Vue Instance Section -->
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      endpoint: 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json',
+      cities: [],
+      searchValue: ''
+    },
+    computed: {
+      findMatches: function () {
+        return this.cities.filter(place => {
+          // here we need to figure out if the city or state matches what was searched
+          const regex = new RegExp(this.searchValue, 'gi');
+          return place.city.match(regex) || place.state.match(regex)
+        })
+      },
+      displayMatches: function () {
+        return this.findMatches.map(place => {
+          const regex = new RegExp(this.searchValue, 'gi')
+          const cityName = place.city.replace(regex, `<span class="hl">${this.searchValue}</span>`)
+          const stateName = place.state.replace(regex, `<span class="hl">${this.searchValue}</span>`)
+          return {
+            rank: place.rank,
+            name: `${cityName}, ${stateName}`,
+            population: this.numberWithCommas(place.population)
+          }
+        })
+      }
+    },
+    methods: {
+      numberWithCommas: function (x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+      }
+    },
+    mounted: function () {
+      fetch(this.endpoint)
+        .then(blob => blob.json())
+        .then(data => this.cities.push(...data))
+    }
+  })
+</script>
+
+</body>
+</html>
