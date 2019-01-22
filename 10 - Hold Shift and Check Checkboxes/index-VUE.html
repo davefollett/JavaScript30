@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hold Shift to Check Multiple Checkboxes</title>
+  <!-- Use Vue from a CDN -->
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Vue Root DOM Element -->
+<div id="app">
+  <div class="inbox">
+    <div class="item"
+         v-for="checkbox in checkboxes"
+         :key="checkbox.id"
+    >
+      <input type="checkbox"
+             v-model="checkbox.checked"
+             @click="handleCheck(checkbox.id, $event)"
+      >
+      <p>{{ checkbox.label }}</p>
+    </div>
+  </div>
+</div>
+  
+<!-- Vue Instance Section -->
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      lastCheckedID: undefined,
+      checkboxes: [
+        { id: 0, checked: false, label: "This is an inbox layout." },
+        { id: 1, checked: false, label: "Check one item" },
+        { id: 2, checked: false, label: "Hold down your Shift key" },
+        { id: 3, checked: false, label: "Check a lower item" },
+        { id: 4, checked: false, label: "Everything inbetween should also be set to checked" },
+        { id: 5, checked: false, label: "Try do it without any libraries" },
+        { id: 6, checked: false, label: "Just regular JavaScript (or Vue)" },
+        { id: 7, checked: false, label: "Good Luck!" },
+        { id: 8, checked: false, label: "Don't forget to tweet your result!" },
+      ]
+    },
+    methods: {
+      handleCheck: function (id, e) {
+        console.log(e)
+        // Check if they had the shift key down
+        // AND check that they are checking it
+        let inBetween = false;
+        if (e.shiftKey && e.target.checked) {
+          // go ahead and do what we please
+          // loop over every single checkbox
+          this.checkboxes.forEach(checkbox => {
+            console.log(checkbox);
+            if (checkbox.id === id || checkbox.id === this.lastCheckedID) {
+              inBetween = !inBetween;
+              console.log('Starting to check them inbetween!');
+            }
+
+            if (inBetween) {
+              checkbox.checked = true;
+            }
+          });
+        }
+
+        this.lastCheckedID = id;
+      }
+    },
+  });
+</script>
+
+<!-- CSS Section -->
+<style> 
+  html {
+    font-family: sans-serif;
+    background:#ffc600;
+  }
+
+  .inbox {
+    max-width:400px;
+    margin:50px auto;
+    background:white;
+    border-radius:5px;
+    box-shadow:10px 10px 0 rgba(0,0,0,0.1);
+  }
+
+  .item {
+    display:flex;
+    align-items:center;
+    border-bottom: 1px solid #F1F1F1;
+  }
+
+  .item:last-child {
+    border-bottom:0;
+  }
+
+  input:checked + p {
+    background:#F9F9F9;
+    text-decoration: line-through;
+  }
+
+  input[type="checkbox"] {
+    margin:20px;
+  }
+
+  p {
+    margin:0;
+    padding:20px;
+    transition:background 0.2s;
+    flex:1;
+    font-family:'helvetica neue';
+    font-size: 20px;
+    font-weight: 200;
+    border-left: 1px solid #D1E2FF;
+  }
+
+</style>
+
+</body>
+</html>
