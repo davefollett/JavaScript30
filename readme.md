@@ -3,6 +3,7 @@
 This fork is part of a blog series at [https://davefollett.io](https://davefollett.io) that re-implements each JavaScript30 project (that makes sense) with Vue.  All changes found here are not intended to be merged back into the original repository. 
 
 ## Change Log
+* Added "10 - Hold Shift and Check Checkboxes/index-VUE.html"
 * Added "08 - Fun with HTML5/index-VUE.html"
 * Added "06 - Type Ahead/index-VUE.html"
 * Added "05 - Flex Panel Gallery/index-VUE.html"
