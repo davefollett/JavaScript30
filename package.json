@@ -1,5 +1,5 @@
 {
-    "name": "a-new-vue-on-javascript30-TEST",
+    "name": "a-new-vue-on-javascript30",
     "version": "1.0.0",
     "description": "This is a static template with no bundling",
     "main": "index.html",
@@ -8,13 +8,10 @@
     },
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/codesandbox-app/static-template.git"
+      "url": "git+https://github.com/davefollett/JavaScript30.git"
     },
-    "keywords": [ "test", "dave"],
-    "author": "Ives van Hoorne",
+    "keywords": [ "JavaScript", "Vue", "JavaScript30"],
+    "author": "Dave Follett",
     "license": "MIT",
-    "bugs": {
-      "url": "https://github.com/codesandbox-app/static-template/issues"
-    },
-    "homepage": "https://github.com/codesandbox-app/static-template#readme"
+    "homepage": "https://davefollett.io"
   }
