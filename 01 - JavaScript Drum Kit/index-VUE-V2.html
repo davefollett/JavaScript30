@@ -44,7 +44,7 @@
         key.isPlaying = false
       },
       playSound: function (e) {
-        const key = this.keys.find( key => { return key.keyCode === e.keyCode })
+        const key = this.keys.find( ({ keyCode }) => keyCode === `${e.keyCode}`);
         if (!key) { return }
 
         key.audio.currentTime = 0
